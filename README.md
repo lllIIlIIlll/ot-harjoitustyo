@@ -1,4 +1,9 @@
-# ohte harjoitustyö
-### tähän **alle** tulee kuvaus
-kun tiedän mitä teen 
-*- vielä en tiedä*
+#ohte harjoitustyö
+
+###Tehtävät
+
+###Viikko 1
+
+[gitlog.txt](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt).
+
+[komentorivi.txt](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt).
