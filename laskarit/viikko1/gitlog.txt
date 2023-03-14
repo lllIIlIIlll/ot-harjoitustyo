@@ -1,0 +1,106 @@
+adsalmin@lx2-fuxi269:~/ot_viikko1$ git log --stat | cat
+commit a41b496b4d7e6adae28bddbf85bc64b1562b16fd
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:26:11 2023 +0200
+
+    tehtävä 11
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 509822d208f125673278b185155b2b65f3b979a1
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:22:27 2023 +0200
+
+    luotu hakemisto ja luotu hakemistoon kolme tiedostoa
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 68354be008c85e729fec5461ae2ea2d7b9ea8773
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:16:53 2023 +0200
+
+    tehtävä 9
+
+ eka.txt    | 5 ++---
+ kolmas.txt | 3 ++-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 9358724f55ab1034ad52ad8555a4688d1346570a
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:14:20 2023 +0200
+
+    tiedosto.txt uudelleen nimeäminen
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ecb0a3b956d64f0261479a5f3c01377161bff17d
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:12:08 2023 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit bf381fde9ecc5753ad0e7addc259367a16c6fac8
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:09:53 2023 +0200
+
+    poistettu ja lisätty tekstiä
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit eb771bf3443e29fb025b1fe345fc62a6f6f458dd
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:08:36 2023 +0200
+
+    lisätty tekstiä
+
+ tiedosto.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit d2fc71c08bc7e47b2007950dea967201c969c1ee
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:03:56 2023 +0200
+
+    luotu kolmas.txt ja hakemisto stuff. Tehty muutoksia kolmas.txt ja toinen.txt
+
+ kolmas.txt               | 1 +
+ stuff/jokin_tiedosto.txt | 0
+ toinen.txt               | 1 +
+ 3 files changed, 2 insertions(+)
+
+commit a13a00ced7a4de94ce68def9070b260872620f2a
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:01:43 2023 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2629586e741f19ebf9c816c5ddcc544b4aec90cc
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 15:00:07 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit be394cb0724439b503c9878ee918237ef8277029
+Author: arttu <arttu.salminen@helsinki.fi>
+Date:   Tue Mar 14 14:58:12 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
