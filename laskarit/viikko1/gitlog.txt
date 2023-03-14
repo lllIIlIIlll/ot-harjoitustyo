@@ -1,4 +1,3 @@
-adsalmin@lx2-fuxi269:~/ot_viikko1$ git log --stat | cat
 commit a41b496b4d7e6adae28bddbf85bc64b1562b16fd
 Author: arttu <arttu.salminen@helsinki.fi>
 Date:   Tue Mar 14 15:26:11 2023 +0200
