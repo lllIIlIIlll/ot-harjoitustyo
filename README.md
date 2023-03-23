@@ -1,9 +1,5 @@
 # ohte harjoitustyö
 
-tehtävä 16: muutos
-
-tehtävä 17: muutos
-
 ### Tehtävät
 
 ### Viikko 1
