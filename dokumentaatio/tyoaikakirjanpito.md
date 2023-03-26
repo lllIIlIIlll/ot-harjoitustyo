@@ -1,3 +1,3 @@
 ## Työaikakirjanpito  
-### Viikko 2  
-    - Vaatimusmäärittelyn luonti
+### 26.3  
+    - Sovelluksen suunnittelu/Vaatimusmäärittelyn luonti 1,5h
