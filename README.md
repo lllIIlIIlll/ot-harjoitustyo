@@ -1,5 +1,9 @@
 # ohte harjoitustyö
 
+[Vaatimusmaarittely](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[Työaikakirjanpito](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
 ### Tehtävät
 
 ### Viikko 1
