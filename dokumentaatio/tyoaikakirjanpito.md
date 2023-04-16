@@ -18,5 +18,13 @@
     - Testikattavuusraportti
     - Invoke-tehtävät
     - Changelog.md
-    - 1,5h
-### yht. 13h  
+    - 1,5h  
+### 10.4  
+    - Ajastin päänäkymään ja äänimerkkien lisäys.
+    - 3h  
+### 15.4  
+    - Ajastimen toiminnot ja asetukset.  
+    - Pylint lisätty ja siistitty koodia
+    - kirjatumistestien lisääminen user_repo_test.py.  
+    - 5h
+### yht. 21h

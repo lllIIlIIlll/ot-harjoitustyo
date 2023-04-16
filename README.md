@@ -8,3 +8,27 @@ StudyTimer on sovellus, jonka avulla voi rytmittää opiskelua. Käyttäjä voi 
 
 [Changelog](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+
+[Arkkitehtuuri](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+## Komentorivi invoke taskit
+
+### Suorittaminen  
+```console
+poetry run invoke start
+```
+
+### Testaus  
+```console
+poetry run invoke test
+```
+
+### Testikattavuus  
+```console
+poetry run invoke coverage-report
+```
+
+### Pylint  
+```console
+poetry run invoke lint
+```
