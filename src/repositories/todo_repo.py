@@ -26,3 +26,7 @@ class TodoRepo:
         self.db_connection.execute('DELETE FROM todos WHERE user_id=? and todo=?',
                                     [user_id[0], todo])
         return True
+
+    def destroy_db_instances_for_testing(self):
+        # Testaamiseen tarkoitettu metodi
+        self.db_connection.execute('DELETE FROM todos')
