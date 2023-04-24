@@ -1,6 +1,6 @@
 import tkinter
 import tkinter.messagebox as messagebox
-import User
+import entities.User as User
 from repositories import user_repo
 from ui import login_view
 

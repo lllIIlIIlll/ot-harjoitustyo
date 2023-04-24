@@ -1,5 +1,5 @@
 import unittest
-import User
+import entities.User as User
 from repositories import user_repo
 
 class TestUserRepo(unittest.TestCase):

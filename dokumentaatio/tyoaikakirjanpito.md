@@ -26,5 +26,12 @@
     - Ajastimen toiminnot ja asetukset.  
     - Pylint lisätty ja siistitty koodia
     - kirjatumistestien lisääminen user_repo_test.py.  
+    - 5h  
+### 22.4
+    - Eristetty sovelluslogiikkaa ja siistitty tiedostorakennetta.
+    - 2h  
+### 24.4  
+    - Lisätty mahdollisuus luoda ja poistaa todoja.
+    - Tkinterin uusiin elementteihin tutustumista.
     - 5h
-### yht. 21h
+### yht. 28h
