@@ -11,6 +11,11 @@ StudyTimer on sovellus, jonka avulla voi rytmittää opiskelua. Käyttäjä voi 
 
 [Arkkitehtuuri](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+## Asennus  
+Riippuvuuksien asennus komennolla:  
+```console
+poetry install
+```
 ## Komentorivi invoke taskit
 
 ### Suorittaminen  
