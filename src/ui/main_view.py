@@ -43,7 +43,7 @@ class MainView:
         self.todo_box = tkinter.Listbox(master=self.main_frame, width=50, height=10)
         self.todo_box.grid(row=9, column=0, columnspan=3)
         self.scrollbar = tkinter.Scrollbar(master=self.main_frame, orient="vertical", command=self.todo_box.yview)
-        self.scrollbar.configure(width=20, troughcolor="white", bg="#000000", activebackground="grey",borderwidth=0)
+        self.scrollbar.config(width=20, troughcolor="white", bg="#000000", activebackground="grey",borderwidth=0)
         self.scrollbar.grid(row=9, column=3, padx=5)
         self.todo_box.config(yscrollcommand=self.scrollbar.set)
 
@@ -62,6 +62,8 @@ class MainView:
         self.del_todo.grid(row=11, column=0, columnspan=3, padx=5, pady=10)
 
     def _create_todo(self):
+        if self.new_todo.get("1.0", "end-1c") == "":
+            return
         # Tallentaa uuden todon tietokantaan ja päivittää sen käyttöliittymään
         todo_to_save = Todo.Todo(self.user, self.new_todo.get("1.0", "end-1c"), False)
         self.new_todo.delete("1.0", "end-1c")
@@ -71,11 +73,14 @@ class MainView:
     
     def _delete_todo(self):
         # Poistaa valitun todon tietokannasta ja käyttöliittymästä
-        selection = self.todo_box.curselection()
-        todo_to_delete = self.todo_box.get(selection[0])
-        connection = todo_repo.TodoRepo()
-        connection.delete_todo(self.user, todo_to_delete)
-        self.todo_box.delete(tkinter.ANCHOR)
+        try:
+            selection = self.todo_box.curselection()
+            todo_to_delete = self.todo_box.get(selection[0])
+            connection = todo_repo.TodoRepo()
+            connection.delete_todo(self.user, todo_to_delete)
+            self.todo_box.delete(tkinter.ANCHOR)
+        except IndexError:
+            pass
 
     def _logout(self):
         # Lataa kirjatumisnäkymän kun käyttäjä kirjautuu ulos
