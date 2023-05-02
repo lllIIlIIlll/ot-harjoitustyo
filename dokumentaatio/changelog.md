@@ -9,3 +9,6 @@
     - Käyttäjä voi kirjauduttuaan sisään määrittää opiskelulle ja tauolle tarkoitetut ajat ja käyttää ajastinta.
 ### Viikko 5
     - Käyttäjä voi luoda todoja ja poistaa niitä.
+### Viikko 6
+    - Käyttäjä voi muokata todojansa, eikä voi lisätä/muokata sellaisia todoja, jotka löytyy jo käyttäjän todoista.
+    - Ulkoasua päivitetty siten että käyttäjä tietää mitä toimintoja on tehty.

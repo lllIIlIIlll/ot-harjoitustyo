@@ -33,5 +33,10 @@
 ### 24.4  
     - Lisätty mahdollisuus luoda ja poistaa todoja.
     - Tkinterin uusiin elementteihin tutustumista.
-    - 5h
+    - 5h  
+### 1.5  
+    - Lisätty mahdollisuus muokata kirjattuja todoja.
+    - Päivitetty käyttöliittymää, käyttäjälle kerrotaan tehdyistä toimenpiteistä.
+    - Laajennettu testikattavuutta.
+    - 4h
 ### yht. 28h

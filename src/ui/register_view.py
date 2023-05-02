@@ -5,8 +5,14 @@ from repositories import user_repo
 from ui import login_view
 
 class RegisterView:
-    # Luokka joka määrittää rekisteröitymisnäkymän
+    """ Luokka joka määrittää rekisteröitymisnäkymän.
+    """
     def __init__(self, root):
+        """ Konstruktori joka määrittää rekisteröitymisnäkymän.
+
+        Args:
+            root: tkinter ikkuna
+        """
         self.root = root
         self.register_frame = tkinter.Frame(root, width=600, height=800, bg='#FFFFFF')
         self.register_frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -15,7 +21,8 @@ class RegisterView:
 
 
     def init_register_form(self):
-        # Rekisteröitymislomake
+        """ Määrittää rekisteröitymislomakkeen.
+        """
         self.username_label = tkinter.Label(master=self.register_frame, text="Username", bg='#FFFFFF')
         self.username_entry = tkinter.Entry(master=self.register_frame)
         self.username_label.grid(padx=5, pady=5)
@@ -38,7 +45,9 @@ class RegisterView:
         go_back_button.grid(row=8, column=0, columnspan=2, padx=5, pady=10)
 
     def _handle_registration(self):
-        # Metodi joka tarkistaa ensin täsmääkö salasanat ja tallentaa käyttäjän tietokantaan.
+        """ Metodi joka tarkistaa ensin täsmääkö salasanat ja tallentaa käyttäjän tietokantaan.
+        Epäonnistuessa, ilmoitetaan käyttäjälle virheestä, muuten ohjataan kirjautumisnäkymään.
+        """
         if self.password_entry.get() == self.second_password_entry.get():
             new_user = User.User(self.username_entry.get(), self.password_entry.get())
             users = user_repo.UserRepo()
@@ -46,14 +55,13 @@ class RegisterView:
             if save_to_db == False:
                 messagebox.showerror("Error", 'Username taken')
             else:
-                # Takaisin kirjautumisnäkymään
                 self._back_to_login()
         else:
-            # Jos salasanat eivät täsmää
             messagebox.showerror("Error", 'Passwords not matching')
     
     def _back_to_login(self):
-        # Lataa kirjautumisnäkymän
+        """ Lataa kirjautumisnäkymän.
+        """
         self.register_frame.destroy()
         self.root = login_view.LoginView(self.root)
         self.root.init_login_form()

@@ -5,8 +5,14 @@ from ui import register_view, main_view
 from repositories import user_repo
 
 class LoginView:
-    # Luokka joka määrittää kirjautumisnäkymän
+    """ Luokka joka määrittää kirjautumisnäkymän.
+    """
     def __init__(self, root):
+        """ Konstruktori joka määrittää kirjautumisnäkymän.
+
+        Args:
+            root: tkinter ikkuna
+        """
         self.root = root
         self.login_frame = tkinter.Frame(root, width=600, height=600, bg='#FFFFFF')
         self.login_frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -14,7 +20,8 @@ class LoginView:
         login_label.grid(row=0, column= 0, padx=5, pady=5)
 
     def init_login_form(self):
-        # Kirjautumislomake
+        """ Kirjautumislomake.
+        """
         self.username_label = tkinter.Label(master=self.login_frame, text="Username", bg='#FFFFFF')
         self.username_entry = tkinter.Entry(master=self.login_frame)
         self.username_label.grid(padx=5, pady=5)
@@ -35,20 +42,22 @@ class LoginView:
         create_user_button.grid(row=7, column=0, columnspan=2, pady=10)
 
     def _login(self):
-        # Tarkistetaan löytyykö käyttäjä ja täsmääkö salasana
+        """ Tarkistetaan löytyykö käyttäjä ja täsmääkö salasana.
+        Onnistuessa ladataan sovelluksen näkymä, muuten ilmoitetaan virheestä käyttäjälle.
+        """
         user = User.User(self.username_entry.get(), self.password_entry.get())
         connection = user_repo.UserRepo()
         check_auth = connection.login_user(user)
         if check_auth == False:
             messagebox.showerror("Error", 'Username or password incorrect')
         else:
-            # Kirjautumisen onnistuessa ladataan sovelluksen näkymä
             self.login_frame.destroy()
             self.root = main_view.MainView(self.root, user)
             self.root.init_main_view()
 
     def _register(self):
-        # Lataa rekisteröitymisnäkymän
+        """ Lataa rekisteröitymisnäkymän.
+        """
         self.login_frame.destroy()
         self.root = register_view.RegisterView(self.root)
         self.root.init_register_form()

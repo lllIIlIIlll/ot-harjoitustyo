@@ -6,8 +6,15 @@ from services import timer_service
 from ui import login_view
 
 class MainView:
-    # Luokka joka määrittää sovelluksen näkymän kirjautumisen jälkeen
+    """ Luokka joka määrittää sovelluksen näkymän kirjautumisen jälkeen.
+    """
     def __init__(self, root, user):
+        """ Konstruktorissa määritellään käyttöliittymän käyttäjä ja asetetaan ajat ajastimelle.
+
+        Args:
+            root: tkinter ikkuna.
+            user: kirjautunut käyttäjä.
+        """
         self.root = root
         self.user = user
         self.timer = None
@@ -19,7 +26,8 @@ class MainView:
         self.timer_settings_opened = False
 
     def init_main_view(self):
-        # Ulos kirjautumista varten painike
+        """ Metodi, joka rakentaa sovelluksen päänäkymän.
+        """
         logout_button = tkinter.Button(master=self.main_frame, text="Log out", command=self._logout, bg='#f55656', activebackground='#f26868')
         logout_button.grid(row=5, column=0, columnspan=3, pady=10)
 
@@ -54,42 +62,72 @@ class MainView:
             self.todo_box.insert("end", todo[0])
 
         # Todo toiminnot
-        self.new_todo = tkinter.Text(master=self.main_frame, height=2, width=30, pady=5)
+        self.todo_input = tkinter.Text(master=self.main_frame, height=2, width=30, pady=5)
         self.create_todo = tkinter.Button(master=self.main_frame, text="Create Todo", command=self._create_todo, bg='#FFFFFF')
+        self.edit_todo = tkinter.Button(master=self.main_frame, text="Edit Selected", command=self._edit_todo, bg='#FFFFFF')
         self.del_todo = tkinter.Button(master=self.main_frame, text="Delete Selected", command=self._delete_todo, bg='#FFFFFF')
-        self.new_todo.grid(row=10, column=0, columnspan=2, padx=5, pady=10)
+        self.err_label = tkinter.Label(master=self.main_frame, text="", bg='#FFFFFF')
+        self.todo_input.grid(row=10, column=0, columnspan=2, padx=5, pady=10)
         self.create_todo.grid(row=10, column=2, columnspan=1, padx=5, pady=10)
-        self.del_todo.grid(row=11, column=0, columnspan=3, padx=5, pady=10)
+        self.edit_todo.grid(row=11, column=0, padx=5, pady=10)
+        self.del_todo.grid(row=11, column=1, padx=5, pady=10)
+        self.err_label.grid(row=11, column=2, padx=5, pady=10)
 
     def _create_todo(self):
-        if self.new_todo.get("1.0", "end-1c") == "":
+        """ Metodi, joka mahdollistaa uuden todon luonnin.
+        """
+        if self.todo_input.get("1.0", "end-1c") == "":
             return
-        # Tallentaa uuden todon tietokantaan ja päivittää sen käyttöliittymään
-        todo_to_save = Todo.Todo(self.user, self.new_todo.get("1.0", "end-1c"), False)
-        self.new_todo.delete("1.0", "end-1c")
-        connection = todo_repo.TodoRepo()
-        connection.create_todo(self.user, todo_to_save)
-        self.todo_box.insert("end", todo_to_save.content)
+        todo_to_save = Todo.Todo(self.user, self.todo_input.get("1.0", "end-1c"), False)
+        self.todo_input.delete("1.0", "end-1c")
+        if todo_repo.TodoRepo().create_todo(self.user, todo_to_save):
+            self.todo_box.insert("end", todo_to_save.content)
+            self.err_label.config(text="Todo created!", fg="green")
+            return
+        self.err_label.config(text="Already exists!", fg="red")
+        return
+    
+    def _edit_todo(self):
+        """ Metodi, joka mahdollistaa valitun todon muokkaamisen.
+        """
+        try:
+            selection = self.todo_box.curselection()
+            todo_to_edit = self.todo_box.get(selection[0])
+            edited_todo = self.todo_input.get("1.0", "end-1c")
+            if len(edited_todo) > 0:
+                if todo_repo.TodoRepo().edit_todo(self.user, todo_to_edit, edited_todo):
+                    self.todo_box.insert(tkinter.ANCHOR, edited_todo)
+                    self.todo_box.delete(tkinter.ANCHOR)
+                    self.todo_input.delete("1.0", "end-1c")
+                    self.err_label.config(text="Todo updated!", fg="green")
+                    return
+                self.err_label.config(text="Already exists!", fg="red")
+                return
+        except IndexError:
+            pass
     
     def _delete_todo(self):
-        # Poistaa valitun todon tietokannasta ja käyttöliittymästä
+        """ Metodi, joka mahdollistaa valitun todon poistamisen tietokannasta ja käyttöliittymästä.
+        """
         try:
             selection = self.todo_box.curselection()
             todo_to_delete = self.todo_box.get(selection[0])
-            connection = todo_repo.TodoRepo()
-            connection.delete_todo(self.user, todo_to_delete)
+            todo_repo.TodoRepo().delete_todo(self.user, todo_to_delete)
             self.todo_box.delete(tkinter.ANCHOR)
+            self.err_label.config(text="Todo deleted!", fg="red")
         except IndexError:
             pass
 
     def _logout(self):
-        # Lataa kirjatumisnäkymän kun käyttäjä kirjautuu ulos
+        """ Metodi, joka lataa kirjatumisnäkymän kun käyttäjä kirjautuu ulos.
+        """
         self.main_frame.destroy()
         self.root = login_view.LoginView(self.root)
         self.root.init_login_form()
 
     def _timer_settings(self):
-        # Ei avata uutta ikkunaa jos ikkuna on auki
+        """ Metodi, joka avaa ajastimen asetukset, jos jo auki niin ei avata.
+        """
         if self.timer_settings_opened:
             return
         self.timer_settings_opened = True
@@ -117,20 +155,22 @@ class MainView:
         self.setting_window.destroy()
         self.timer_settings_opened = False
 
-
     def _update_times(self):
-        # Päivittää käyttäjän valitsemat ajat ja lataa ajastin näkemymän uudelleen
+        """ Päivittää käyttäjän valitsemat ajat ja lataa ajastin näkemymän uudelleen.
+        """
         self.study_time = self.new_study_time.get()
         self.break_time = self.new_break_time.get()
-        # Tuhotaan ikkuna ja päivitetään timer_settings, jotta voi avata uuden.
+
         self.setting_window.destroy()
         self.timer_settings_opened = False
-        # Ladataan päänäkymä
+
         self.pause_timer.config(text="Pause")
         self.init_main_view()
 
     def _start_timer(self):
-        if self.timer: # Ei luoda uutta ajastinta, jos sellainen olemassa
+        """ Aloittaa ajastimen, ei luoda uutta ajastinta, jos sellainen olemassa.
+        """
+        if self.timer:
             return
         else:
             self.timer = Timer(self.study_time, self.break_time)
@@ -139,7 +179,8 @@ class MainView:
             self._update_time_label()
 
     def _pause_timer(self):
-        # Metodi joka mahdollistaa ajastimen tauko toiminnallisuuden, toimii vain jos ajastin olemassa
+        """ Mahdollistaa tauko toiminnallisuuden, toimii vain jos ajastin olemassa.
+        """
         if self.timer:
             self.timer.timer_on = not self.timer.timer_on
             if self.timer.timer_on:
@@ -151,7 +192,8 @@ class MainView:
         return
 
     def _reset_timer(self):
-        # Resetoi ajastimen, poistamalla olemassa olevan
+        """ Resetoi ajastimen poistamalla olemassa olevan.
+        """
         if self.timer:
             self.timer = None
             self.timer_service = None
@@ -162,7 +204,8 @@ class MainView:
 
          
     def _update_time_label(self):
-        # Päivittää time_labelin tekstiä ja saa jäljellä olevan ajan ajastinluokan countdown() metodista
+        """ Päivittää time_labelin tekstiä ja saa jäljellä olevan ajan ajastinluokan countdown() metodista.
+        """
         if self.timer:
             remaining_time = self.timer_service.count_down()
             if remaining_time != "00:00" and self.timer.timer_on:
