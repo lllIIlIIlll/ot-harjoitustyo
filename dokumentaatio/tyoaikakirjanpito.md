@@ -38,5 +38,8 @@
     - Lisätty mahdollisuus muokata kirjattuja todoja.
     - Päivitetty käyttöliittymää, käyttäjälle kerrotaan tehdyistä toimenpiteistä.
     - Laajennettu testikattavuutta.
-    - 4h
-### yht. 28h
+    - 4h  
+### 2.5
+    - Kommentoitu koodia, laajennettu arkkitehtuurikuvausta ja lisätty käyttöohje.
+    - 2h
+### yht. 34h
