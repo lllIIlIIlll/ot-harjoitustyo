@@ -37,6 +37,7 @@ Sovelluksen käyttöliittymän toiminnallisuudesta vastaa:
 [TodoRepo](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/src/reporitories/todo_repo.py), joka mahdollistaa todojen lisäyksen, muokkaamisen ja poistamisen.  
 [UserRepo](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/src/reporitories/user_repo.py), joka mahdollistaa kirjautumisen ja rekisteröitymisen.  
 ### Sekvenssikaavio  
+Uuden todon luonti.  
 ```mermaid
 sequenceDiagram
   participant User

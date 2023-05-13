@@ -1,12 +1,23 @@
 import pygame
 
 class TimerService:
-    # Luokka joka määrittää ajastimen.
+    """ Luokka joka määrittää ajastimen toiminnallisuuden.
+    """
     def __init__(self, timer):
+        """ Konstruktorissa annetaan luokalla ajastin.
+
+        Args:
+            timer: ajastin, jota luokka hallinnoi.
+        """
         self.timer = timer
         pygame.mixer.init()
 
     def count_down(self):
+        """ Metodi joka vähentää jäljellä olevaa aikaa ja vaihtaa ajastimen statuksen.
+
+        Returns:
+            Merkkijonon, joka kertoo jäljellä olevan ajan.
+        """
         if self.timer.remaining_time <= 0:
             if self.timer.study_status is True:
                 self.timer.remaining_time = self.timer.rest
@@ -20,16 +31,20 @@ class TimerService:
                 self.start()
 
         minutes, seconds = divmod(self.timer.remaining_time, 60)
-        # Päivitetään jäljellä olevaa aikaa vain jos ajastin käynnissä.
+
         if self.timer.timer_on:
             self.timer.remaining_time -= 1
 
         return f"{minutes:02d}:{seconds:02d}"
 
     def start(self):
-        # Jos ajastin on käynnissä ei aloiteta uutta.
+        """ Metodi joka aloittaa ajastimen.
+
+        Returns:
+            False, jos ajastin on jo päällä.
+        """
         if self.timer.timer_on:
-            return
+            return False
         self.timer.timer_on = True
         if self.timer.study_status:
             self.timer.remaining_time = self.timer.study

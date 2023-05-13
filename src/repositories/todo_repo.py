@@ -3,9 +3,19 @@ import db_config
 class TodoRepo:
     """ Luokka, joka mahdollistaa todojen käsittelyn.
     """
-    def __init__(self):
+    def __init__(self, test=False):
         """ Konstruktorissa luodaan yhteys tietokantaan.
+
+        Args:
+            test: määrittää käytetäänkö testaamiseen tarkoitettuja tauluja.
         """
+        if test:
+            self.users = "usersTest"
+            self.todos = "todosTest"
+        else:
+            self.users = "users"
+            self.todos = "todos"
+
         self.db_conn = db_config.get_db()
 
     def create_todo(self, user, todo):
@@ -18,12 +28,12 @@ class TodoRepo:
         Returns:
             True, jos todoa ei löydy käyttäjältä, False jos löytyy.
         """
-        user_id = self.db_conn.execute("SELECT id FROM users WHERE username=?"
+        user_id = self.db_conn.execute(f"SELECT id FROM {self.users} WHERE username=?"
                                        ,[user.username]).fetchone()
-        todo_exists = self.db_conn.execute("SELECT todo FROM todos WHERE user_id=? and todo=?"
+        todo_exists = self.db_conn.execute(f"SELECT todo FROM {self.todos} WHERE user_id=? and todo=?"
                                            ,[user_id[0], todo.content]).fetchone()
         if todo_exists is None:
-            self.db_conn.execute("INSERT INTO todos (user_id, todo) VALUES (?, ?)"
+            self.db_conn.execute(f"INSERT INTO {self.todos} (user_id, todo) VALUES (?, ?)"
                                  ,[user_id[0], todo.content])
             return True
 
@@ -38,9 +48,9 @@ class TodoRepo:
         Returns:
             Käyttäjän todot.
         """
-        user_id = self.db_conn.execute("SELECT id FROM users WHERE username=?"
+        user_id = self.db_conn.execute(f"SELECT id FROM {self.users} WHERE username=?"
                                        ,[user.username]).fetchone()
-        return self.db_conn.execute("SELECT todo FROM todos WHERE user_id=?"
+        return self.db_conn.execute(f"SELECT todo FROM {self.todos} WHERE user_id=?"
                                     ,[user_id[0]]).fetchall()
 
     def delete_todo(self, user, todo):
@@ -53,9 +63,9 @@ class TodoRepo:
         Returns:
             True
         """
-        user_id = self.db_conn.execute("SELECT id FROM users WHERE username=?"
+        user_id = self.db_conn.execute(f"SELECT id FROM {self.users} WHERE username=?"
                                        ,[user.username]).fetchone()
-        self.db_conn.execute('DELETE FROM todos WHERE user_id=? and todo=?'
+        self.db_conn.execute(f"DELETE FROM {self.todos} WHERE user_id=? and todo=?"
                              ,[user_id[0], todo])
         return True
 
@@ -74,13 +84,13 @@ class TodoRepo:
         if todo == edited_todo:
             return False
 
-        user_id = self.db_conn.execute("SELECT id FROM users WHERE username=?"
+        user_id = self.db_conn.execute(f"SELECT id FROM {self.users} WHERE username=?"
                                        ,[user.username]).fetchone()
-        todo_exists = self.db_conn.execute("SELECT todo FROM todos WHERE user_id=? and todo=?"
+        todo_exists = self.db_conn.execute(f"SELECT todo FROM {self.todos} WHERE user_id=? and todo=?"
                                            ,[user_id[0], edited_todo]).fetchone()
 
         if todo_exists is None:
-            self.db_conn.execute('UPDATE todos SET todo=? WHERE user_id=? and todo=?'
+            self.db_conn.execute(f"UPDATE {self.todos} SET todo=? WHERE user_id=? and todo=?"
                                  ,[edited_todo, user_id[0], todo])
             return True
         return False
@@ -88,4 +98,4 @@ class TodoRepo:
     def destroy_db_instances_for_testing(self):
         """ Metodi joka poistaa todot. (testejä varten)
         """
-        self.db_conn.execute('DELETE FROM todos')
+        self.db_conn.execute(f"DELETE FROM {self.todos}")

@@ -13,6 +13,15 @@ db.execute(
     "CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, user_id TEXT, todo TEXT)"
     )
 
+# Testaukseen tarkoitetut taulut
+db.execute(
+    "CREATE TABLE IF NOT EXISTS usersTest (id INTEGER PRIMARY KEY, username TEXT, password TEXT)"
+    )
+
+db.execute(
+    "CREATE TABLE IF NOT EXISTS todosTest (id INTEGER PRIMARY KEY, user_id TEXT, todo TEXT)"
+    )
+
 # Funktio, jolla voidaan tarjota tietokantaa käyttäville luokille yhteys tietokantaan
 def get_db():
     return db

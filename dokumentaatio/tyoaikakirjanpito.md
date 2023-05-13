@@ -41,5 +41,9 @@
     - 4h  
 ### 2.5
     - Kommentoitu koodia, laajennettu arkkitehtuurikuvausta ja lisätty käyttöohje.
-    - 2h
+    - 2h  
+### 12.5  
+    - Viimeistelty palautusta varten.
+    - Tehty testaamista varten omat taulut tietokantaan.
+    
 ### yht. 34h
