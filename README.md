@@ -7,6 +7,7 @@ StudyTimer on sovellus, jonka avulla voi rytmittää opiskelua. Käyttäjä voi 
 [Työaikakirjanpito](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)  
 [Changelog](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)  
 [Arkkitehtuuri](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)  
+[Testaus](https://github.com/lllIIlIIlll/ot-harjoitustyo/blob/master/dokumentaatio/testit.md)
 
 ## Asennus  
 Riippuvuuksien asennus komennolla:  

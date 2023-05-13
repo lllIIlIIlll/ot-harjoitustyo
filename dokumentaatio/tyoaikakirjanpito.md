@@ -43,7 +43,13 @@
     - Kommentoitu koodia, laajennettu arkkitehtuurikuvausta ja lisätty käyttöohje.
     - 2h  
 ### 12.5  
-    - Viimeistelty palautusta varten.
+    - Viimeisteltyä palautusta varten.
     - Tehty testaamista varten omat taulut tietokantaan.
+    - 2h  
+### 13.5
+    - Tehty testausdokumentti.
+    - Laajennettu testikattavuutta.
+    - Lisätty docstiringia.
+    - 1,5h
     
-### yht. 34h
+### yht. 37,5h
